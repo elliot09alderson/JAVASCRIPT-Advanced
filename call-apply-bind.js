@@ -1,34 +1,25 @@
-const menOne={
- 
-    name:"pratik",
-    skill:"MERN",
-    secret :function(a,b){
-        return (
-            this.skill = "Gaming"+" " +a+" "+b
-        )
-    }
-}
+const obj1 = {
+  subject: "maths",
+  school: "hps",
+  func1: function (idk) {
+    console.log(this.subject, idk);
+  },
+};
 
-menOne.secret("java","javascript")
-console.log(menOne)
+const obj2 = {
+  subject: "science",
+  school: "kps",
+};
 
+// call
+obj1.func1.call(obj2, "well i know"); // science
 
-const menTwo={
-    name:"Ranjeet",
-    skill :"Android",
-    
-}
-//men One ke secret method ko call krdo men two k liye 
-menOne.secret.call(menTwo,"coding","cricket")
-console.log(menTwo)
+// apply
+obj1.func1.apply(obj2, ["well i know"]); // other args send inside the array
 
+// bind
+obj1.func1.apply(obj2, ["well i know"]); // other args send inside the array
 
-// *************************** Apply ************************
+const callMe = obj1.func1.bind(obj2, "well i know"); //similar to call, gives a callback through we can execute it later
 
-menOne.secret.apply(menTwo,["java","python"])
-console.log(menTwo)
-
-// *************************** Bind ************************
-const mySecret = menOne.secret.bind(menTwo,"SaapSidi","ludo")
-mySecret()
-console.log(menTwo)
+callMe();
